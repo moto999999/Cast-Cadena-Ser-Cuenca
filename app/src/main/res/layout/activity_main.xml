@@ -10,14 +10,17 @@
 
     <EditText
         android:id="@+id/streamLocationField"
-        android:layout_margin="16dp"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:hint="@string/stream_location_hint"
+        android:minHeight="48dp"
+        android:textColorHint="#546E7A"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:hint="@string/stream_location_hint"
-        />
+        android:importantForAutofill="no"
+        android:inputType="textUri" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
