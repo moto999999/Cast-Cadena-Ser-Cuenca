@@ -9,7 +9,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         >
-        <activity android:name="com.dupontgu.simplecast.MainActivity"
+        <activity android:name="com.moto999999.cadenaSerCast.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -21,7 +21,7 @@
         <meta-data
             android:name=
                 "com.google.android.gms.cast.framework.OPTIONS_PROVIDER_CLASS_NAME"
-            android:value="com.dupontgu.simplecast.CastOptionsProvider"
+            android:value="com.moto999999.cadenaSerCast.CastOptionsProvider"
             />
     </application>
 

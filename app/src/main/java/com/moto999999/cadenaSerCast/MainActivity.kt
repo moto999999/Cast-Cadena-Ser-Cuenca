@@ -1,16 +1,20 @@
-package com.dupontgu.simplecast
+package com.moto999999.cadenaSerCast
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import android.util.Log
 import android.view.Menu
 import android.widget.EditText
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.preference.PreferenceManager
 import com.google.android.gms.cast.MediaInfo
 import com.google.android.gms.cast.MediaLoadOptions
 import com.google.android.gms.cast.MediaMetadata
 import com.google.android.gms.cast.framework.*
+import java.io.BufferedReader
+import java.io.InputStreamReader
+import java.net.URL
+import java.net.URLConnection
 
 internal const val TAG = "MAIN"
 internal const val STREAM_ADDRESS_KEY = "streamAddressKey"
@@ -18,22 +22,22 @@ internal const val STREAM_ADDRESS_KEY = "streamAddressKey"
 class MainActivity : AppCompatActivity() {
     private lateinit var castSessionManager: SessionManager
     private val sessionManagerListener: SessionManagerListener<Session> by lazy { SessionManagerListenerImpl() }
-    private lateinit var streamLocationField: EditText
+    private var urlSerCuenca = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         castSessionManager = CastContext.getSharedInstance(this).sessionManager
-        streamLocationField = findViewById(R.id.streamLocationField)
+        val url = "https://raw.githubusercontent.com/moto999999/Cast-Cadena-Ser-Cuenca/master/ser-cuenca-url.txt"
+        Thread {
+            urlSerCuenca = getURLText(url)
+        }.start()
+        while (urlSerCuenca.isBlank()) {}
     }
 
     override fun onResume() {
         super.onResume()
         castSessionManager.addSessionManagerListener(sessionManagerListener)
-        // if the field is blank and we have a saved address, populate the field with it
-        if (streamLocationField.text.isNullOrBlank()) {
-            getSavedStreamAddress().takeIf { !it.isNullOrBlank() }?.let { streamLocationField.setText(it) }
-        }
     }
 
     override fun onPause() {
@@ -42,13 +46,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun startCast() {
-        val streamLocation = streamLocationField.text.takeIf { !it.isNullOrBlank() }?.toString() ?: run {
-            Toast.makeText(this@MainActivity,
-                    "Please enter valid stream address and restart your cast session",
-                    Toast.LENGTH_LONG)
-                    .show()
-            return
-        }
+        val streamLocation = urlSerCuenca
 
         val castSession = castSessionManager.currentCastSession ?: run {
             Toast.makeText(this, "CastSession is null", Toast.LENGTH_LONG).show()
@@ -121,6 +119,20 @@ class MainActivity : AppCompatActivity() {
             Log.d(TAG, "Cast onSessionResuming")
         }
     }
+
+    @Throws(Exception::class)
+    fun getURLText(url: String?): String {
+        val website = URL(url)
+        val connection: URLConnection = website.openConnection()
+        val `in` = BufferedReader(
+            InputStreamReader(
+                connection.getInputStream()
+            )
+        )
+        val response = StringBuilder()
+        var inputLine: String?
+        while (`in`.readLine().also { inputLine = it } != null) response.append(inputLine)
+        `in`.close()
+        return response.toString()
+    }
 }
-
-

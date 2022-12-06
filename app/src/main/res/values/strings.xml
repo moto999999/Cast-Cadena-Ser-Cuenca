@@ -1,4 +1,4 @@
 <resources>
-    <string name="app_name">VinylCast2</string>
-    <string name="stream_location_hint">http://[stream.url]:[port]/[stream-name]</string>
+    <string name="app_name">Cadena Ser Cuenca</string>
+    <string name="textview">Para escuchar Cadena Ser Cuenca pulsa el botón de arriba a la derecha y selecciona tu dispositivo.</string>
 </resources>

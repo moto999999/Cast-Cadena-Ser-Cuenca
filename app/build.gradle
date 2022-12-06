@@ -7,7 +7,7 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 33
     defaultConfig {
-        applicationId "com.dupont.vinylcast2"
+        applicationId "com.moto999999.cadenaSerCast"
         minSdkVersion 23
         targetSdkVersion 33
         versionCode 1
@@ -23,7 +23,7 @@ android {
     buildFeatures {
         viewBinding = true
     }
-    namespace 'com.dupontgu.simplecast'
+    namespace 'com.moto999999.cadenaSerCast'
 }
 
 dependencies {

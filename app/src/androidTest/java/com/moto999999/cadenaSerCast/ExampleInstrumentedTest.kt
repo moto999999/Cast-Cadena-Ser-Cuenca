@@ -1,4 +1,4 @@
-package com.dupontgu.simplecast
+package com.moto999999.cadenaSerCast
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

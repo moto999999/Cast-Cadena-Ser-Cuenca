@@ -1,4 +1,4 @@
-package com.dupontgu.simplecast
+package com.moto999999.cadenaSerCast
 
 import android.content.Context
 import com.google.android.gms.cast.CastMediaControlIntent
